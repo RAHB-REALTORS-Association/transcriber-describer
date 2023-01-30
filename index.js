@@ -29,17 +29,19 @@ async function transcribeAudio(filename) {
   return transcript;
 }
 
-async function summarizeTranscript(transcription) {
-  const prompt = `Please summarize the following text: ${transcription}`;
+async function summarizeTranscript(transcript) {
+  const prompt = `Please summarize the following text: ${transcript}`;
 
-  openai.Completion.create({
+  const completion = await openai.Completion.create({
     prompt: prompt,
     engine: "text-davinci-002"
-  }).then(completion => {
-    console.log(completion.choices[0].text);
-    // do something with the summary
-    return completion.choices[0].text;
   });
+
+  const summary = completion.choices[0].text;
+  fs.writeFileSync(`${name}.txt`, summary);
+  console.log(`Summary saved as "${name}.txt"`);
+
+  return summary;
 }
 
 async function generateSubtitles(transcript) {
