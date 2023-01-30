@@ -56,7 +56,7 @@ async function generateSubtitles(transcript) {
     counter++;
   }
 
-  fs.writeFileSync("subtitles.srt", srt);
+  fs.writeFileSync(`${path.basename(video, '.mp4')}.srt`, srt);
   console.log("Subtitle file generated!");
 }
 
