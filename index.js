@@ -69,6 +69,9 @@ async function processVideo(videoPath) {
   console.log(stdout);
   console.error(stderr);
 
+  fs.writeFileSync(audioPath, stdout);
+  console.log(`Ripped audio track saved as "${audioPath}"`);
+
   console.log(`Transcribing audio from ${audioPath}`);
   const transcript = await transcribeAudio(audioPath);
   console.log(`Transcript: ${transcript}`);
