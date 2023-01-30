@@ -38,8 +38,8 @@ async function summarizeTranscript(transcript) {
   });
 
   const summary = completion.choices[0].text;
-  fs.writeFileSync(`${name}.txt`, summary);
-  console.log(`Summary saved as "${name}.txt"`);
+  fs.writeFileSync(`${videoFileName}.txt`, summary);
+  console.log(`Summary saved as "${videoFileName}.txt"`);
 
   return summary;
 }
