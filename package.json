@@ -1,0 +1,11 @@
+{
+  "name": "video-processor",
+  "version": "1.0.0",
+  "dependencies": {
+    "@google-cloud/speech": "^5.0.0",
+    "child-process-promise": "^2.2.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
