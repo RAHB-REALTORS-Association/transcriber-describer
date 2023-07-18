@@ -1,12 +1,12 @@
 # Transcriber-Describer
 
-This project transcribes audio from video files and generates descriptions from the transcriptions. It uses OpenAI's Whisper API for transcription and the ChatGPT-3.5-turbo model for generating descriptions.
+This project transcribes audio from video files and generates descriptions from the transcriptions. It uses OpenAI's **Whisper API** for transcription and the **ChatGPT-3.5-turbo** model for generating descriptions.
 
 ### How to Run
 You can run the main Python script from the terminal:
 
 ```bash
-python main.py
+python main.py /path/to/video/folder
 ```
 
 ### Setting up your OpenAI API credentials:
@@ -18,8 +18,8 @@ python main.py
 5. Set your API Key as an environment variable in your system: `export OPENAI_API_KEY="your-api-key"`.
 
 ### Installing Dependencies
-This project uses the openai and moviepy libraries. You can install them using pip:
+This project uses the `openai`, `moviepy` and `pydub` libraries. You can install them using pip:
 
 ```bash
-pip install openai moviepy
+pip install openai moviepy pydub
 ```
