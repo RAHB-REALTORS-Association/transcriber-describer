@@ -1,4 +1,5 @@
 import os
+import argparse
 from transcriber import transcribe_audio
 from describer import generate_description
 from audio_extractor import extract_audio_from_video
@@ -14,7 +15,7 @@ def process_video_files(video_files_directory):
         original_file_name, _ = os.path.splitext(video_file)
 
         video_file_path = os.path.join(video_files_directory, video_file)
-        audio_file_path = os.path.join(video_files_directory, f"{original_file_name}.audio")
+        audio_file_path = os.path.join(video_files_directory, f"{original_file_name}_audio.audio")
         transcript_file_path = os.path.join(video_files_directory, f"{original_file_name}_transcript.txt")
         description_file_path = os.path.join(video_files_directory, f"{original_file_name}_description.txt")
 
@@ -34,3 +35,9 @@ def process_video_files(video_files_directory):
 
         print(f'Description for {video_file}: {description}')
         os.remove(audio_file_path)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Process video files in a directory.')
+    parser.add_argument('directory', type=str, help='The directory containing video files.')
+    args = parser.parse_args()
+    process_video_files(args.directory)
