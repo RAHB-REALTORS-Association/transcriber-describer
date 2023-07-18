@@ -10,10 +10,27 @@ def process_video_files(video_files_directory):
         if not (video_file.endswith(".mp4") or video_file.endswith(".avi") or video_file.endswith(".mov")):
             continue
 
+        # Remove file extension from video_file to generate original file name
+        original_file_name, _ = os.path.splitext(video_file)
+
         video_file_path = os.path.join(video_files_directory, video_file)
-        audio_file_path = video_file_path + ".wav"
+        audio_file_path = os.path.join(video_files_directory, f"{original_file_name}.audio")
+        transcript_file_path = os.path.join(video_files_directory, f"{original_file_name}_transcript.txt")
+        description_file_path = os.path.join(video_files_directory, f"{original_file_name}_description.txt")
+
         extract_audio_from_video(video_file_path, audio_file_path)
+        
         transcription = transcribe_audio(audio_file_path)
+
+        # Save the transcription into a .txt file
+        with open(transcript_file_path, 'w') as f:
+            f.write(transcription)
+
         description = generate_description(transcription)
+
+        # Save the description into a .txt file
+        with open(description_file_path, 'w') as f:
+            f.write(description)
+
         print(f'Description for {video_file}: {description}')
         os.remove(audio_file_path)

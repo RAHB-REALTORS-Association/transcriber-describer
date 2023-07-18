@@ -15,7 +15,7 @@ python main.py
 2. Navigate to the API section of the OpenAI Dashboard.
 3. Generate a new API key by clicking the "Create API Key" button.
 4. Securely store your API Key.
-5. Set your API Key as an environment variable in your system: export `OPENAI_API_KEY="your-api-key"`.
+5. Set your API Key as an environment variable in your system: `export OPENAI_API_KEY="your-api-key"`.
 
 ### Installing Dependencies
 This project uses the openai and moviepy libraries. You can install them using pip:
