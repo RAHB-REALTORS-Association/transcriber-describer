@@ -15,7 +15,7 @@ def process_video_files(video_files_directory):
         original_file_name, _ = os.path.splitext(video_file)
 
         video_file_path = os.path.join(video_files_directory, video_file)
-        audio_file_path = os.path.join(video_files_directory, f"{original_file_name}_audio.audio")
+        audio_file_path = os.path.join(video_files_directory, f"{original_file_name}_audio.mp3")
         transcript_file_path = os.path.join(video_files_directory, f"{original_file_name}_transcript.txt")
         description_file_path = os.path.join(video_files_directory, f"{original_file_name}_description.txt")
 
