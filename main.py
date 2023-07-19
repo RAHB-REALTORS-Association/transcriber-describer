@@ -3,6 +3,8 @@ import argparse
 from audio_extractor import extract_audio_from_video
 from transcriber import transcribe_audio, transcribe_audio_local
 from describer import generate_description, generate_description_local
+from translator import translate_subtitle
+import re
 
 def process_video_files(args):
     video_files_directory = args.directory
@@ -35,15 +37,25 @@ def process_video_files(args):
 
         if args.local or args.local_transcribe:
             transcription = transcribe_audio_local(audio_file_path)
+            if args.translate:
+                orig_language, translation_language = args.translate.split(":")
+                transcription = translate_subtitle(transcription, orig_language, translation_language)
             # Save the transcription into a .srt file
             transcription.save(transcript_file_path)
+            if not args.keep_transcripts:
+                os.remove(transcript_file_path)
             # Convert the transcription into plain text for description generation
-            transcription_text = "\n".join([subtitle.text for subtitle in transcription])
+            transcription_text = "\\n".join([subtitle.text for subtitle in transcription])
         else:
             transcription_text = transcribe_audio(audio_file_path)
+            if args.translate:
+                orig_language, translation_language = args.translate.split(":")
+                transcription_text = translate_subtitle(transcription_text, orig_language, translation_language)
             # Save the transcription into a .txt file
             with open(transcript_file_path, 'w') as f:
                 f.write(transcription_text)
+            if not args.keep_transcripts:
+                os.remove(transcript_file_path)
 
         if args.local or args.local_describe:
             description = generate_description_local(transcription_text, args.model)
@@ -55,7 +67,8 @@ def process_video_files(args):
             f.write(description)
 
         print(f'Description for {video_file}: {description}')
-        os.remove(audio_file_path)
+        if not args.keep_audio:
+            os.remove(audio_file_path)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process video files in a directory.')
@@ -67,5 +80,8 @@ if __name__ == "__main__":
     parser.add_argument('--time', type=int, help='Duration in seconds of the video to transcribe.')
     parser.add_argument('--bitrate', type=int, help='Bitrate for the extracted audio.')
     parser.add_argument('--overwrite', action='store_true', help='Overwrite existing audio, transcript, and description files.')
+    parser.add_argument('--translate', type=str, help='Translation in the form <orig_language>:<translation_language>.')
+    parser.add_argument('--keep-transcripts', action='store_true', help='Keep generated transcript files.')
+    parser.add_argument('--keep-audio', action='store_true', help='Keep extracted audio files.')
     args = parser.parse_args()
     process_video_files(args)
