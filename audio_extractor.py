@@ -9,7 +9,7 @@ def extract_audio_from_video(video_file_path, audio_file_path):
     
     # Convert WAV to MP3
     sound = AudioSegment.from_wav("temp.wav")
-    sound.export(audio_file_path, format="mp3")
+    sound.export(audio_file_path, format="mp3", bitrate="64k")
 
     # Remove temporary WAV file
     os.remove("temp.wav")
