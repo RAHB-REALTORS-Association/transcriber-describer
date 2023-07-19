@@ -17,7 +17,13 @@ def process_video_files(args):
 
         video_file_path = os.path.join(video_files_directory, video_file)
         audio_file_path = os.path.join(video_files_directory, f"{original_file_name}_audio.mp3")
-        transcript_file_path = os.path.join(video_files_directory, f"{original_file_name}_transcript.srt")
+        
+        transcript_file_path = ""
+        if args.local or args.local_transcribe:
+            transcript_file_path = os.path.join(video_files_directory, f"{original_file_name}_transcript.srt")
+        else:
+            transcript_file_path = os.path.join(video_files_directory, f"{original_file_name}_transcript.txt")
+
         description_file_path = os.path.join(video_files_directory, f"{original_file_name}_description.txt")
 
         # Check if files already exist and whether we should overwrite
@@ -25,23 +31,24 @@ def process_video_files(args):
             print(f'Skipping {video_file} as output files already exist')
             continue
 
-        extract_audio_from_video(video_file_path, audio_file_path, args.time)
+        extract_audio_from_video(video_file_path, audio_file_path, args.time, args.bitrate)
 
         if args.local or args.local_transcribe:
             transcription = transcribe_audio_local(audio_file_path)
+            # Save the transcription into a .srt file
+            transcription.save(transcript_file_path)
+            # Convert the transcription into plain text for description generation
+            transcription_text = "\n".join([subtitle.text for subtitle in transcription])
         else:
-            transcription = transcribe_audio(audio_file_path)
-
-        # Save the transcription into a .srt file
-        transcription.save(transcript_file_path)
-
-        # Convert the transcription into plain text for description generation
-        transcription_text = "\n".join([subtitle.text for subtitle in transcription])
+            transcription_text = transcribe_audio(audio_file_path)
+            # Save the transcription into a .txt file
+            with open(transcript_file_path, 'w') as f:
+                f.write(transcription_text)
 
         if args.local or args.local_describe:
-            description = generate_description_local(transcription_text)
+            description = generate_description_local(transcription_text, args.model)
         else:
-            description = generate_description(transcription_text)
+            description = generate_description(transcription_text, args.model)
 
         # Save the description into a .txt file
         with open(description_file_path, 'w') as f:
@@ -53,10 +60,12 @@ def process_video_files(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process video files in a directory.')
     parser.add_argument('directory', type=str, help='The directory containing video files.')
+    parser.add_argument('--model', type=str, default='gpt-3.5-turbo', help='Model name to use for description generation.')
     parser.add_argument('--local', action='store_true', help='Use local versions of both transcribe and describe functions.')
     parser.add_argument('--local-transcribe', action='store_true', help='Use local version of transcribe function.')
     parser.add_argument('--local-describe', action='store_true', help='Use local version of describe function.')
     parser.add_argument('--time', type=int, help='Duration in seconds of the video to transcribe.')
+    parser.add_argument('--bitrate', type=int, help='Bitrate for the extracted audio.')
     parser.add_argument('--overwrite', action='store_true', help='Overwrite existing audio, transcript, and description files.')
     args = parser.parse_args()
     process_video_files(args)

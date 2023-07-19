@@ -13,6 +13,11 @@ def extract_audio_from_video(video_file_path, audio_file_path, time=None, bitrat
     
     # Convert WAV to MP3
     sound = AudioSegment.from_wav("temp.wav")
+    
+    # If bitrate is specified, format it as a string for pydub
+    if bitrate is not None:
+        bitrate = f"{bitrate}k"
+    
     sound.export(audio_file_path, format="mp3", bitrate=bitrate)
 
     # Remove temporary WAV file
