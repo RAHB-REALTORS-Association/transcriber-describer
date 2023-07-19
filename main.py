@@ -1,8 +1,8 @@
 import os
 import argparse
 from audio_extractor import extract_audio_from_video
-from transcriber import transcribe_audio,transcribe_audio_local
-from describer import generate_description,generate_description_local
+from transcriber import transcribe_audio, transcribe_audio_local
+from describer import generate_description, generate_description_local
 
 def process_video_files(args):
     video_files_directory = args.directory
@@ -20,7 +20,12 @@ def process_video_files(args):
         transcript_file_path = os.path.join(video_files_directory, f"{original_file_name}_transcript.srt")
         description_file_path = os.path.join(video_files_directory, f"{original_file_name}_description.txt")
 
-        extract_audio_from_video(video_file_path, audio_file_path)
+        # Check if files already exist and whether we should overwrite
+        if not args.overwrite and (os.path.exists(audio_file_path) or os.path.exists(transcript_file_path) or os.path.exists(description_file_path)):
+            print(f'Skipping {video_file} as output files already exist')
+            continue
+
+        extract_audio_from_video(video_file_path, audio_file_path, args.time)
 
         if args.local or args.local_transcribe:
             transcription = transcribe_audio_local(audio_file_path)
@@ -51,5 +56,7 @@ if __name__ == "__main__":
     parser.add_argument('--local', action='store_true', help='Use local versions of both transcribe and describe functions.')
     parser.add_argument('--local-transcribe', action='store_true', help='Use local version of transcribe function.')
     parser.add_argument('--local-describe', action='store_true', help='Use local version of describe function.')
+    parser.add_argument('--time', type=int, help='Duration in seconds of the video to transcribe.')
+    parser.add_argument('--overwrite', action='store_true', help='Overwrite existing audio, transcript, and description files.')
     args = parser.parse_args()
     process_video_files(args)
