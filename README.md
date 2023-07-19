@@ -9,6 +9,7 @@ You can run the main Python script from the terminal with several optional flags
 python main.py /path/to/video/folder --local --local-transcribe --local-describe --time <seconds> --bitrate <bitrate> --overwrite
 ```
 
+- The `--model` flag sets the OpenAI model to use for description generation. The default is `gpt-3.5-turbo`.
 - The `--local` flag uses local versions of both the transcribe and describe functions.
 - The `--local-transcribe` flag uses the local version of the transcribe function.
 - The `--local-describe` flag uses the local version of the describe function.
