@@ -1,6 +1,7 @@
 # Transcriber-Describer
 
-[![Continuous Integration](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml)[![Docker Image](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml)
+[![Continuous Integration](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml)
+[![Docker Image](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This project transcribes audio from video files and generates descriptions from the transcriptions. It uses OpenAI's **Whisper API** for transcription and the **ChatGPT-3.5-turbo** model for generating descriptions. The user can opt to use a local model for both tasks if desired. The tool also supports extracting a specific duration from the start of the video and controlling the bitrate of the audio.
