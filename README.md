@@ -1,3 +1,5 @@
+[![Continuous Integration](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml)[![Docker Image](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml)
+
 # Transcriber-Describer
 
 This project transcribes audio from video files and generates descriptions from the transcriptions. It uses OpenAI's **Whisper API** for transcription and the **ChatGPT-3.5-turbo** model for generating descriptions. The user can opt to use a local model for both tasks if desired. The tool also supports extracting a specific duration from the start of the video and controlling the bitrate of the audio.
@@ -36,4 +38,18 @@ This project uses the `openai`, `moviepy`, `pydub`, and `pysubs2` libraries. You
 
 ```bash
 pip install openai moviepy pydub pysubs2
+```
+
+## Running with Docker
+
+To get started, you first need to pull the Docker image from the GitHub Container Registry. You can do this by running the following command in your terminal:
+
+```sh
+docker pull ghcr.io/rahb-realtors-association/transcriber-describer:latest
+```
+
+Run with the following command:
+
+```sh
+docker run ghcr.io/rahb-realtors-association/transcriber-describer:latest <flags>
 ```
