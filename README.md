@@ -13,6 +13,7 @@ This project transcribes audio from video files and generates descriptions from 
 - [Community](#community)
   - [Contributing](#contributing)
   - [Reporting Bugs](#reporting-bugs)
+- [License](#license)
 
 ## How to Run
 
@@ -83,3 +84,6 @@ If you've found something that doesn't work as it should, or would like to sugge
 
 [![Raise an
 Issue](https://img.shields.io/badge/Raise_an_Issue-GitHub-%23060606?style=for-the-badge&logo=github&logoColor=fff)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/issues/new/choose)
+
+## License
+This project is open sourced under the MIT license. See the [LICENSE](LICENSE) file for more info.
