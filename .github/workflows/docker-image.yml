@@ -1,6 +1,8 @@
 name: Docker Image
 
 on:
+  push:
+    branches: ['master']
   create:
 
 env:
