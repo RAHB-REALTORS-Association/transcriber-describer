@@ -1,5 +1,5 @@
 openai==0.4.0
-moviepy.editor==1.0.3
+moviepy.editor==1.0.2
 pydub==0.23.1
 pysubs2==0.3.3
 git+https://github.com/abdeladim-s/subsai.git
