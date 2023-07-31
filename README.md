@@ -51,5 +51,5 @@ docker pull ghcr.io/rahb-realtors-association/transcriber-describer:latest
 Run with the following command:
 
 ```sh
-docker run ghcr.io/rahb-realtors-association/transcriber-describer:latest <flags>
+docker run -it ghcr.io/rahb-realtors-association/transcriber-describer:latest <flags>
 ```
