@@ -1,4 +1,4 @@
-# Transcriber-Describer
+# 🗣 Transcriber-Describer 📝
 
 [![Continuous Integration](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/python-app.yml)
 [![Docker Image](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml/badge.svg)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/actions/workflows/docker-image.yml)
