@@ -7,16 +7,16 @@
 This project transcribes audio from video files and generates descriptions from the transcriptions. It uses OpenAI's **Whisper API** for transcription and the **ChatGPT-3.5-turbo** model for generating descriptions. The user can opt to use a local model for both tasks if desired. The tool also supports extracting a specific duration from the start of the video and controlling the bitrate of the audio.
 
 ## Table of Contents
-- [How to Run](#how-to-run)
-- [Setting up your OpenAI API credentials](#setting-up-your-openai-api-credentials)
-- [Installing Dependencies](#installing-dependencies)
-- [Running with Docker](#running-with-docker)
-- [Community](#community)
-  - [Contributing](#contributing)
-  - [Reporting Bugs](#reporting-bugs)
-- [License](#license)
+- [🛠️ How to Run](#%EF%B8%8F-how-to-run)
+- [🔑 Setting up your OpenAI API credentials](#-setting-up-your-openai-api-credentials)
+- [📦 Installing Dependencies](#-installing-dependencies)
+- [🐳 Running with Docker](#-running-with-docker)
+- [🌐 Community](#-community)
+  - [Contributing 👥🤝](#contributing-)
+  - [Reporting Bugs 🐛📝](#reporting-bugs-)
+- [📄 License](#-license)
 
-## How to Run
+## 🛠️ How to Run
 
 You can run the main Python script from the terminal with several optional flags:
 
@@ -38,7 +38,7 @@ If you just want to process the video files in a directory without using any fla
 python main.py /path/to/video/folder
 ```
 
-## Setting up your OpenAI API credentials
+## 🔑 Setting up your OpenAI API credentials
 
 1. Sign up for an OpenAI account if you don't already have one.
 2. Navigate to the API section of the OpenAI Dashboard.
@@ -46,7 +46,7 @@ python main.py /path/to/video/folder
 4. Securely store your API Key.
 5. Set your API Key as an environment variable in your system: `export OPENAI_API_KEY="your-api-key"`.
 
-## Installing Dependencies
+## 📦 Installing Dependencies
 
 This project uses the `openai`, `moviepy`, `pydub`, and `pysubs2` libraries. You can install them using pip:
 
@@ -54,7 +54,7 @@ This project uses the `openai`, `moviepy`, `pydub`, and `pysubs2` libraries. You
 pip install openai moviepy pydub pysubs2
 ```
 
-## Running with Docker
+## 🐳 Running with Docker
 
 To get started, you first need to pull the Docker image from the GitHub Container Registry. You can do this by running the following command in your terminal:
 
@@ -68,9 +68,9 @@ Run with the following command:
 docker run -it ghcr.io/rahb-realtors-association/transcriber-describer:latest <flags>
 ```
 
-## Community
+## 🌐 Community
 
-### Contributing
+### Contributing 👥🤝
 
 Contributions of any kind are very welcome, and would be much appreciated. For Code of Conduct, see [Contributor Convent](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
 
@@ -79,12 +79,12 @@ To get started, fork the repo, make your changes, add, commit and push the code,
 [![Submit a
 PR](https://img.shields.io/badge/Submit_a_PR-GitHub-%23060606?style=for-the-badge&logo=github&logoColor=fff)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/compare)
 
-### Reporting Bugs
+### Reporting Bugs 🐛📝
 
 If you've found something that doesn't work as it should, or would like to suggest a new feature, then go ahead and raise an issue on GitHub. For bugs, please outline the steps needed to reproduce, and include relevant info like system info and resulting logs.
 
 [![Raise an
 Issue](https://img.shields.io/badge/Raise_an_Issue-GitHub-%23060606?style=for-the-badge&logo=github&logoColor=fff)](https://github.com/RAHB-REALTORS-Association/transcriber-describer/issues/new/choose)
 
-## License
-This project is open sourced under the MIT license. See the [LICENSE](LICENSE) file for more info.
+## 📄 License
+This project is open sourced under the MIT license. See the [LICENSE](LICENSE) file for more info. 📜
