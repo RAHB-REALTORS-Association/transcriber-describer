@@ -7,7 +7,7 @@
 This project transcribes audio from video files and generates descriptions from the transcriptions. It uses OpenAI's **Whisper API** for transcription and the **ChatGPT-3.5-turbo** model for generating descriptions. The user can opt to use a local model for both tasks if desired. The tool also supports extracting a specific duration from the start of the video and controlling the bitrate of the audio.
 
 ## Table of Contents
-- [🛠️ How to Run](#%EF%B8%8F-how-to-run)
+- [🧑‍💻 How to Run](#-how-to-run)
 - [🔑 Setting up your OpenAI API credentials](#-setting-up-your-openai-api-credentials)
 - [📦 Installing Dependencies](#-installing-dependencies)
 - [🐳 Running with Docker](#-running-with-docker)
@@ -16,7 +16,7 @@ This project transcribes audio from video files and generates descriptions from 
   - [Reporting Bugs 🐛📝](#reporting-bugs-)
 - [📄 License](#-license)
 
-## 🛠️ How to Run
+## 🧑‍💻 How to Run
 
 You can run the main Python script from the terminal with several optional flags:
 
