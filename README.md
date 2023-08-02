@@ -48,11 +48,25 @@ python main.py /path/to/video/folder
 
 ## 📦 Installing Dependencies
 
-This project uses the `openai`, `moviepy`, `pydub`, and `pysubs2` libraries. You can install them using pip:
+This project uses the `ffmpeg` library from your operating system, the `git` utility is also required to install SubsAI for local transcription. You can install them with your package manager, for example on Ubuntu/Debian:
 
 ```bash
-pip install openai moviepy pydub pysubs2
+sudo apt-get install ffmpeg git
 ```
+
+This project uses the `openai`, `moviepy`, and `pydub` Python libraries. You can install them using pip:
+
+```bash
+pip install openai moviepy pydub
+```
+
+For local transcription, the SubsAI Python project is used, you can install it from GitHub:
+
+```bash
+pip install git+https://github.com/abdeladim-s/subsai.git
+```
+
+For local description, any app or library that provides an OpenAI-compatible API can be used, such as [LM Studio](https://lmstudio.ai).
 
 ## 🐳 Running with Docker
 
