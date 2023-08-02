@@ -1,9 +1,11 @@
-name: Docker Images
+name: Docker Image
 
 on:
   push:
     branches: ['master']
   create:
+    tags:
+      - 'v*'
 
 env:
   REGISTRY: ghcr.io
@@ -29,43 +31,29 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Standard Image
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=tag
-            type=semver,pattern={{version}}
-            type=sha,format=long
-            type=raw,value=latest,enable=${{ github.event_name == 'push' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          
-      # Light Image
-      - name: Extract metadata (tags, labels) for Docker Light
-        id: meta-light
-        uses: docker/metadata-action@v4
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-light
           tags: |
-            type=ref,event=tag
-            type=semver,pattern={{version}}-light
-            type=sha,format=long
-            type=raw,value=light-latest,enable=${{ github.event_name == 'push' }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+          labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Build and push Docker Light image
+      - name: Build and push Docker light image
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile-light
           push: true
-          tags: ${{ steps.meta-light.outputs.tags }}
-          labels: ${{ steps.meta-light.outputs.labels }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest-light
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}-light
+          target: light
+          labels: ${{ steps.meta.outputs.labels }}
