@@ -24,13 +24,16 @@ You can run the main Python script from the terminal with several optional flags
 python main.py /path/to/video/folder --local --local-transcribe --local-describe --time <seconds> --bitrate <bitrate> --overwrite
 ```
 
-- The `--model` flag sets the OpenAI model to use for description generation. The default is `gpt-3.5-turbo`.
+- The `--model` flag sets the OpenAI model to use for description generation. The default is gpt-3.5-turbo.
 - The `--local` flag uses local versions of both the transcribe and describe functions.
 - The `--local-transcribe` flag uses the local version of the transcribe function.
 - The `--local-describe` flag uses the local version of the describe function.
 - The `--time` flag sets the duration in seconds of the video to transcribe.
 - The `--bitrate` flag sets the bitrate for the extracted audio.
 - The `--overwrite` flag enables overwriting of existing audio, transcript, or description files.
+- The `--translate` flag is used for translating the transcription. It should be in the format <orig_language>:<translation_language>.
+- The `--keep-transcripts` flag, if set, allows you to keep the generated transcript files after the program has run.
+- The `--keep-audio` flag, if set, allows you to keep the extracted audio files after the program has run.
 
 If you just want to process the video files in a directory without using any flags, you can do so:
 
@@ -48,11 +51,25 @@ python main.py /path/to/video/folder
 
 ## 📦 Installing Dependencies
 
-This project uses the `openai`, `moviepy`, `pydub`, and `pysubs2` libraries. You can install them using pip:
+This project uses the `ffmpeg` library from your operating system, the `git` utility is also required to install SubsAI for local transcription. You can install them with your package manager, for example on Ubuntu/Debian:
 
 ```bash
-pip install openai moviepy pydub pysubs2
+sudo apt-get install ffmpeg git
 ```
+
+This project uses the `openai`, `moviepy`, and `pydub` Python libraries. You can install them using pip:
+
+```bash
+pip install openai moviepy pydub
+```
+
+For local transcription, the SubsAI Python project is used, you can install it from GitHub:
+
+```bash
+pip install git+https://github.com/abdeladim-s/subsai.git
+```
+
+For local description, any app or library that provides an OpenAI-compatible API can be used, such as [LM Studio](https://lmstudio.ai).
 
 ## 🐳 Running with Docker
 
