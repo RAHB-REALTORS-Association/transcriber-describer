@@ -7,6 +7,10 @@ WORKDIR /app
 # Add the current directory files (i.e., the app) to the Docker container at /app
 ADD . /app
 
+# Install system dependencies
+RUN apt-get update && xargs -a packages.txt apt-get install -y \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
